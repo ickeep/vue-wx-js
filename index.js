@@ -66,7 +66,7 @@ function plugin(Vue, DfConfig = {}) {
           wx.ready(() => {
             vUrlList[encodeURIComponent(url)] = true
             resolve({
-              error: 0
+              status: true,
             })
           })
           wx.error((res) => {
@@ -80,7 +80,7 @@ function plugin(Vue, DfConfig = {}) {
       async fn(fnName, params, conf, url) {
         const wx = window.wx
         const confData = await this.config(conf, url)
-        if (confData.error !== 0) {
+        if (confData.status !== true) {
           return confData
         }
         if (typeof wx[fnName] !== 'function') {
