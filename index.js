@@ -91,7 +91,7 @@ function plugin(Vue, DfConfig = {}) {
         }
         wx[fnName](params)
         return {
-          errno: 0
+          status: true,
         }
       }
     }
