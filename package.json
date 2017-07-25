@@ -1,0 +1,24 @@
+{
+  "name": "vue-wx-js",
+  "description": "vux 微信JS-SDK",
+  "version": "0.1.0",
+  "author": {
+    "name": "icKeep",
+    "email": "i@ickeep.com"
+  },
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ickeep/vue-wx-js"
+  },
+  "bugs": {
+    "url": "https://github.com/ickeep/vue-wx-js/issues"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "readmeFilename": "README.md"
+}
