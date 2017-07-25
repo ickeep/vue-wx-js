@@ -104,7 +104,6 @@ function plugin(Vue, DfConfig = {}) {
   }
 }
 
-// 同上，Vue 是全局变量时，自动 install
 if (typeof window !== 'undefined' && window.Vue) {
   window.Vue.use(plugin);
 }
