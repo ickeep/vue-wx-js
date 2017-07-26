@@ -7,7 +7,6 @@ function plugin(Vue) {
   if (!plugin.installed) {
     (function () {
       /* eslint-disable no-param-reassign */
-      var vUrlList = {};
       var wxFnList = ['checkJsApi', 'onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone', 'chooseImage', 'previewImage', 'uploadImage', 'downloadImage', 'getLocalImgData', 'startRecord', 'stopRecord', 'onVoiceRecordEnd', 'playVoice', 'pauseVoice', 'stopVoice', 'onVoicePlayEnd', 'uploadVoice', 'downloadVoice', 'translateVoice', 'getNetworkType', 'openLocation', 'getLocation', 'startSearchBeacons', 'stopSearchBeacons', 'onSearchBeacons', 'closeWindow', 'hideMenuItems', 'showMenuItems', 'hideAllNonBaseMenuItem', 'showAllNonBaseMenuItem', 'scanQRCode', 'openProductSpecificView', 'chooseCard', 'addCard', 'openCard', 'chooseWXPay'];
       var wxPlugin = {
         config: function config(conf) {
@@ -20,16 +19,11 @@ function plugin(Vue) {
           }
 
           return new Promise(function (resolve) {
-            if (vUrlList[encodeURIComponent(url)]) {
-              resolve({
-                status: true
-              });
-            }
+
             DfConfig.jsApiList = DfConfig.jsApiList || wxFnList;
             var opts = Object.assign(DfConfig, conf);
             wx.config(opts);
             wx.ready(function () {
-              vUrlList[encodeURIComponent(url)] = true;
               resolve({
                 status: true
               });

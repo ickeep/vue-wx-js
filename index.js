@@ -3,7 +3,6 @@
 function plugin(Vue, DfConfig = {}) {
   if (!plugin.installed) {
     /* eslint-disable no-param-reassign */
-    const vUrlList = {}
     const wxFnList = [
       'checkJsApi',
       'onMenuShareTimeline',
@@ -55,16 +54,11 @@ function plugin(Vue, DfConfig = {}) {
         }
 
         return new Promise((resolve) => {
-          if (vUrlList[encodeURIComponent(url)]) {
-            resolve({
-              status: true,
-            })
-          }
+
           DfConfig.jsApiList = DfConfig.jsApiList || wxFnList
           const opts = Object.assign(DfConfig, conf)
           wx.config(opts)
           wx.ready(() => {
-            vUrlList[encodeURIComponent(url)] = true
             resolve({
               status: true,
             })
