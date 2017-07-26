@@ -1,7 +1,7 @@
 {
   "name": "vue-wx-js",
   "description": "vux 微信JS-SDK",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "author": {
     "name": "icKeep",
     "email": "i@ickeep.com"
@@ -13,6 +13,8 @@
   "dependencies": {},
   "devDependencies": {
     "babel-cli": "^6.24.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1"
