@@ -43,6 +43,20 @@ function plugin(Vue, DfConfig = {}) {
       'openCard',
       'chooseWXPay'
     ]
+
+    const tmpFn = function (fnName, params) {
+      const wx = window.wx
+      if (typeof wx[fnName] !== 'function') {
+        return {
+          status: false,
+          errmsg: `微信JS-SDK不支持${fnName}方法`
+        }
+      }
+      wx[fnName](params)
+      return {
+        status: true,
+      }
+    }
     const wxPlugin = {
       config(conf) {
         const wx = window.wx
@@ -54,40 +68,29 @@ function plugin(Vue, DfConfig = {}) {
         }
 
         return new Promise((resolve) => {
-
-          DfConfig.jsApiList = DfConfig.jsApiList || wxFnList
+          DfConfig.jsApiList = DfConfig.jsApiList || wxFnList.concat()
           const opts = Object.assign(DfConfig, conf)
+
           wx.config(opts)
+
           wx.ready(() => {
             resolve({
               status: true,
             })
           })
+
           wx.error((res) => {
             resolve({
-              status: true,
+              status: false,
               errmsg: res
             })
           })
         })
-      },
-      fn(fnName, params) {
-        const wx = window.wx
-        if (typeof wx[fnName] !== 'function') {
-          return {
-            status: false,
-            errmsg: `微信JS-SDK不支持${fnName}方法`
-          }
-        }
-        wx[fnName](params)
-        return {
-          status: true,
-        }
       }
     }
     for (let i = 0; i < wxFnList.length; i += 1) {
       wxPlugin[wxFnList[i]] = function (params) {
-        return wxPlugin.fn(wxFnList[i], params)
+        return tmpFn(wxFnList[i], params)
       }
     }
     Vue.prototype.$wx = wxPlugin
