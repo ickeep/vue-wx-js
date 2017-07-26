@@ -1,14 +1,14 @@
 {
   "name": "vue-wx-js",
   "description": "vux 微信JS-SDK",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "author": {
     "name": "icKeep",
     "email": "i@ickeep.com"
   },
-  "main": "dist/index.js",
+  "main": "dist.js",
   "scripts": {
-    "dist": "babel index.js --out-dir dist/"
+    "dist": "babel index.js --out-file dist.js"
   },
   "dependencies": {},
   "devDependencies": {
