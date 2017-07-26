@@ -16,18 +16,17 @@ jsApiList 可不填，不填为所有
 ###组件里使用插件
 
 ``` js
-this.$wx.fnName(fnParam,conf)
+await conf = await this.$wx.config(conf)
+this.$wx.fnName(fnParam)
 ``` 
 
+conf 为验证配置
 fnName 与 wx.xxx 接口名一致
 
 例如分享到朋友圈  this.$wx.onMenuShareTimeline = wx.onMenuShareTimeline
 
-无需调用 config, ready, error  接口会自动调用
-
 fnParam 为接口参数与微信接口参数一致
 
-conf 为验证配置
 
 ``` js
 {
@@ -39,5 +38,3 @@ conf 为验证配置
     jsApiList: [] // 注册插件时已传，这里可以覆盖，不建议
 }
 ``` 
-
-其中 

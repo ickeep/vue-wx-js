@@ -45,7 +45,7 @@ function plugin(Vue, DfConfig = {}) {
       'chooseWXPay'
     ]
     const wxPlugin = {
-      config(conf, url = location.href.replace(location.hash, '')) {
+      config(conf) {
         const wx = window.wx
         if (!wx) {
           return {
@@ -77,12 +77,8 @@ function plugin(Vue, DfConfig = {}) {
           })
         })
       },
-      async fn(fnName, params, conf, url) {
+      fn(fnName, params) {
         const wx = window.wx
-        const confData = await this.config(conf, url)
-        if (confData.status !== true) {
-          return confData
-        }
         if (typeof wx[fnName] !== 'function') {
           return {
             status: false,
@@ -96,8 +92,8 @@ function plugin(Vue, DfConfig = {}) {
       }
     }
     for (let i = 0; i < wxFnList.length; i += 1) {
-      wxPlugin[wxFnList[i]] = function (params, conf, url) {
-        return wxPlugin.fn(wxFnList[i], params, conf, url)
+      wxPlugin[wxFnList[i]] = function (params) {
+        return wxPlugin.fn(wxFnList[i], params)
       }
     }
     Vue.prototype.$wx = wxPlugin
