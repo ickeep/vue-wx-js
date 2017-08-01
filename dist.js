@@ -1,6 +1,17 @@
 'use strict';
 
 exports.__esModule = true;
+
+var _assign = require('babel-runtime/core-js/object/assign');
+
+var _assign2 = _interopRequireDefault(_assign);
+
+var _promise = require('babel-runtime/core-js/promise');
+
+var _promise2 = _interopRequireDefault(_promise);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function plugin(Vue) {
   var DfConfig = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
@@ -32,9 +43,9 @@ function plugin(Vue) {
             };
           }
 
-          return new Promise(function (resolve) {
+          return new _promise2.default(function (resolve) {
             DfConfig.jsApiList = DfConfig.jsApiList || wxFnList.concat();
-            var opts = Object.assign(DfConfig, conf);
+            var opts = (0, _assign2.default)(DfConfig, conf);
 
             wx.config(opts);
 
